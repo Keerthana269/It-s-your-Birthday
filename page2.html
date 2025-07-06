@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Video</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: black;
+    }
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .video-container video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .overlay {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-family: 'Lobster';
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 3px 3px 8px #000;
+      animation: pop 1s ease-out forwards;
+      z-index: 10;
+    }
+    @keyframes pop {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    canvas {
+      position: fixed;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .button-container {
+      display: none; /* Initially hidden */
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+    }
+    .show-button {
+      background-color: whitesmoke;
+      color:black;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <!-- Ensure the video path is correct after renaming the file -->
+    <video id="birthday-video" src="bithday_video.mp4" autoplay muted playsinline></video>
+  </div>
+  <div class="overlay">Happy Birthday HANUMAN!!!!! </div>
+  
+  <!-- Button container -->
+  <div class="button-container" id="button-container">
+    <button class="show-button" id="celebrate-btn">Make a wish... and I've got a message for you </button>
+  </div>
+
+  <script>
+    // confetti for 5 seconds
+    const duration = 5 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+
+    // Get the video element
+    const video = document.getElementById('birthday-video');
+    const buttonContainer = document.getElementById('button-container');
+    const celebrateButton = document.getElementById('celebrate-btn');
+    
+    // Listen for when the video ends
+    video.addEventListener('ended', function() {
+      // Wait for 15 seconds after video ends
+      setTimeout(function() {
+        buttonContainer.style.display = 'block'; // Show the button
+      }, 1100); // 15 seconds (15000ms)
+    });
+
+    // Add an event listener to the button to navigate to another page when clicked
+    celebrateButton.addEventListener('click', function() {
+      // Redirect to another HTML page in your project
+      window.location.href = "page3.html";  // Replace with your target page URL
+    });
+  </script>
+</body>
+</html>
