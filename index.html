@@ -41,7 +41,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: #fef3c7;
+  
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,7 +49,7 @@
       font-weight: bold;
       z-index: 9999;
       display: none;
-      transition: background-color 0.5s ease;
+      transition: 0.5s ease;
     }
     .shrink {
       animation: shrink 1s ease forwards;
@@ -77,7 +77,7 @@
       document.body.appendChild(countdownScreen);
 
       let count = 3;
-      const colors = ["#fde047", "#f97316", "#ef4444"]; // yellow, orange, red
+      
       countdownScreen.style.backgroundColor = colors[0];
       countdownScreen.textContent = count;
       countdownScreen.classList.add("shrink");
